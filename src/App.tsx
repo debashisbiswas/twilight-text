@@ -67,35 +67,34 @@ const App: Component = () => {
     return segments;
   });
 
+  const handleInput = (e: Event) => {
+    const target = e.target as HTMLDivElement;
+    setText(target.innerText);
+  };
+
   return (
     <div class="min-h-screen bg-white" style="font-family: 'Work Sans', sans-serif;">
       <div class="max-w-4xl mx-auto px-6 py-12">
-        <div class="mb-12">
-          <textarea
-            value={text()}
-            onInput={(e) => setText(e.currentTarget.value)}
-            placeholder="Start writing..."
-            class="w-full h-96 p-8 bg-transparent border-none resize-none focus:outline-none text-gray-800 placeholder-gray-400 text-xl leading-relaxed"
-            style="font-family: 'Work Sans', sans-serif; font-weight: 400;"
-          />
-        </div>
-        
-        <div class="border-t border-gray-200 pt-8">
-          <div class="text-gray-800 text-xl leading-relaxed" style="font-family: 'Work Sans', sans-serif;">
-            <For each={analyzedText()}>
-              {(segment) => (
-                <span class={segment.isHighlighted ? "text-blue-600 font-medium" : ""}>
-                  {segment.text}
-                </span>
-              )}
-            </For>
-            {!text() && (
-              <span class="text-gray-400 italic">
-                Your text will appear here with important terms subtly highlighted...
-              </span>
-            )}
+        <div
+          contentEditable
+          onInput={handleInput}
+          class="w-full min-h-96 p-8 bg-transparent border-none focus:outline-none text-gray-800 text-xl leading-relaxed whitespace-pre-wrap"
+          style="font-family: 'Work Sans', sans-serif; font-weight: 400;"
+          innerHTML={
+            analyzedText().length > 0 
+              ? analyzedText().map(segment => 
+                  segment.isHighlighted 
+                    ? `<span style="color: #2563eb; font-weight: 500;">${segment.text}</span>`
+                    : segment.text
+                ).join('')
+              : ''
+          }
+        />
+        {!text() && (
+          <div class="absolute top-20 left-14 text-gray-400 italic pointer-events-none">
+            Start writing...
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
