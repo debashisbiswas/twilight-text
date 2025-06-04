@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js';
-import { createSignal, createMemo, For } from 'solid-js';
+import { createSignal, createMemo, For, createEffect } from 'solid-js';
 import nlp from 'compromise';
 
 interface TextSegment {
@@ -8,7 +8,11 @@ interface TextSegment {
 }
 
 const App: Component = () => {
-  const [text, setText] = createSignal('');
+  const [text, setText] = createSignal(localStorage.getItem('twilight-text') || '');
+
+  createEffect(() => {
+    localStorage.setItem('twilight-text', text());
+  });
 
   const analyzedText = createMemo(() => {
     if (!text()) return [];
