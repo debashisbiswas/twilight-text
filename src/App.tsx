@@ -11,10 +11,27 @@ const App: Component = () => {
   const [text, setText] = createSignal(
     localStorage.getItem("twilight-text") || "",
   );
+  const [selectedFont, setSelectedFont] = createSignal(
+    localStorage.getItem("twilight-font") || "RocknRoll One",
+  );
 
   createEffect(() => {
     localStorage.setItem("twilight-text", text());
   });
+
+  createEffect(() => {
+    localStorage.setItem("twilight-font", selectedFont());
+  });
+
+  const fonts = [
+    { name: "RocknRoll One", value: "RocknRoll One" },
+    { name: "Open Sans", value: "Open Sans" },
+    { name: "Work Sans", value: "Work Sans" },
+    { name: "Titillium Web", value: "Titillium Web" },
+    { name: "Saira", value: "Saira" },
+    { name: "Exo 2", value: "Exo 2" },
+    { name: "Maven Pro", value: "Maven Pro" },
+  ];
 
   const analyzedText = createMemo(() => {
     if (!text()) return [];
@@ -88,14 +105,30 @@ const App: Component = () => {
   return (
     <div
       class="min-h-screen bg-white"
-      style="font-family: 'RocknRoll One', sans-serif;"
+      style={`font-family: '${selectedFont()}', sans-serif;`}
     >
       <div class="max-w-4xl mx-auto px-6 py-12">
+        <div class="mb-4 flex justify-end">
+          <select
+            value={selectedFont()}
+            onChange={(e) => setSelectedFont(e.currentTarget.value)}
+            class="px-3 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
+            style={`font-family: '${selectedFont()}', sans-serif;`}
+          >
+            <For each={fonts}>
+              {(font) => (
+                <option value={font.value} style={`font-family: '${font.value}', sans-serif;`}>
+                  {font.name}
+                </option>
+              )}
+            </For>
+          </select>
+        </div>
         <div
           contentEditable
           onInput={handleInput}
           class="w-full min-h-96 p-8 bg-transparent border-none focus:outline-none text-gray-800 text-xl leading-relaxed whitespace-pre-wrap"
-          style="font-family: 'RocknRoll One', sans-serif; font-weight: 400;"
+          style={`font-family: '${selectedFont()}', sans-serif; font-weight: 400;`}
           innerHTML={
             analyzedText().length > 0
               ? analyzedText()
