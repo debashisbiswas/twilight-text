@@ -9,3 +9,7 @@ semantic associations can aid reability. This reminded me of the Zelda games,
 which would use color to highlight important concepts in text-based dialogue,
 and I was inspired to experiment with dynamically implementing this concept
 using natural language processing.
+
+## Related
+
+[Hyperlink maximalism | thesephist.com](https://thesephist.com/posts/hyperlink/)
