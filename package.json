@@ -7,7 +7,8 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "format": "prettier --write src"
   },
   "license": "MIT",
   "devDependencies": {
@@ -15,7 +16,8 @@
     "tailwindcss": "^4.0.7",
     "typescript": "^5.7.2",
     "vite": "^6.0.0",
-    "vite-plugin-solid": "^2.11.6"
+    "vite-plugin-solid": "^2.11.6",
+    "prettier": "^3.5.3"
   },
   "dependencies": {
     "compromise": "^14.14.4",
