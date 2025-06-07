@@ -29,15 +29,12 @@ export const HighlightedArea = () => {
             ...organizations,
         ]
 
-        // Sort by length (longest first) to avoid highlighting parts of longer terms
         highlightTerms.sort((a, b) => b.length - a.length)
 
         let result = text()
 
-        // Create a regex that matches any of the terms
-        // Use word boundaries to match whole words only
         const termsPattern = highlightTerms
-            .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) // Escape special regex characters
+            .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
             .join('|')
 
         if (termsPattern) {
