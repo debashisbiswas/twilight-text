@@ -44,7 +44,7 @@ export const HighlightedArea = () => {
             const regex = new RegExp(`\\b(${termsPattern})\\b`, 'gi')
             result = result.replace(
                 regex,
-                '<mark id="$1" class="text-blue-600 bg-transparent visible">$1</mark>',
+                '<mark id="$1" class="text-purple-400 text-shadow-sm bg-transparent visible">$1</mark>',
             )
         }
 
@@ -55,17 +55,17 @@ export const HighlightedArea = () => {
     })
 
     return (
-        <div class="relative leading-6 h-full max-w-xl m-auto">
+        <div class="relative leading-normal h-full max-w-4xl m-auto text-2xl">
             {/* Invisible div to line up text height */}
             {/* Workaround: add a bit of space when the text ends in newlines */}
             <div
-                class="whitespace-pre-wrap invisible wrap-break-word w-full h-full border-none outline-0 p-0 m-0 overflow-auto"
+                class="whitespace-pre-wrap invisible wrap-break-word w-full h-full border-none outline-0 px-8 m-0 overflow-auto"
                 innerHTML={text()}
             ></div>
 
             {/* Highlight overlay */}
             <div
-                class="absolute top-0 bottom-0 left-0 right-0 z-10 pointer-events-none w-full whitespace-pre-wrap wrap-break-word overflow-auto invisible transition ease-in-out"
+                class="absolute top-0 bottom-0 left-0 right-0 z-10 pointer-events-none w-full whitespace-pre-wrap wrap-break-word overflow-auto invisible transition ease-in-out px-8"
                 innerHTML={analyzedText()}
                 ref={highlightRef}
             ></div>
@@ -77,7 +77,7 @@ export const HighlightedArea = () => {
                     (highlightRef.scrollTop = event.target.scrollTop)
                 }
                 placeholder="Start writing..."
-                class="absolute top-0 bottom-0 left-0 right-0 h-full w-full border-none resize-none outline-0 whitespace-pre-wrap wrap-break-word p-0 m-0 rounded-none"
+                class="absolute top-0 bottom-0 left-0 right-0 h-full w-full border-none resize-none outline-0 whitespace-pre-wrap wrap-break-word px-8 m-0 rounded-none"
             />
         </div>
     )
