@@ -3,14 +3,6 @@ import { createSignal, For, createEffect } from 'solid-js'
 import { HighlightedArea } from './components/highlighted-area'
 
 const App: Component = () => {
-    const [selectedFont, setSelectedFont] = createSignal(
-        localStorage.getItem('twilight-font') || 'RocknRoll One',
-    )
-
-    createEffect(() => {
-        localStorage.setItem('twilight-font', selectedFont())
-    })
-
     const fonts = [
         { name: 'RocknRoll One', value: 'RocknRoll One' },
         { name: 'Open Sans', value: 'Open Sans' },
@@ -21,12 +13,20 @@ const App: Component = () => {
         { name: 'Maven Pro', value: 'Maven Pro' },
     ]
 
+    const [selectedFont, setSelectedFont] = createSignal(
+        localStorage.getItem('twilight-font') || fonts[0].value,
+    )
+
+    createEffect(() => {
+        localStorage.setItem('twilight-font', selectedFont())
+    })
+
     return (
         <div
-            class="min-h-screen bg-white"
+            class="h-full bg-white"
             style={`font-family: '${selectedFont()}', sans-serif;`}
         >
-            <div class="max-w-4xl mx-auto px-6 py-12">
+            <div class="max-w-4xl mx-auto px-6 py-12 h-full">
                 <div class="mb-4 flex justify-end">
                     <select
                         value={selectedFont()}

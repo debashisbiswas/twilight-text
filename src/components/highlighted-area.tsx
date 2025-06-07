@@ -6,6 +6,8 @@ export const HighlightedArea = () => {
         localStorage.getItem('twilight-text') || '',
     )
 
+    let highlightRef: HTMLDivElement
+
     createEffect(() => {
         localStorage.setItem('twilight-text', text())
     })
@@ -42,26 +44,40 @@ export const HighlightedArea = () => {
             const regex = new RegExp(`\\b(${termsPattern})\\b`, 'gi')
             result = result.replace(
                 regex,
-                '<span class="text-blue-600">$1</span>',
+                '<mark id="$1" class="text-blue-600 bg-transparent visible">$1</mark>',
             )
         }
 
+        // Fix edge case with misalignment on trailing newline when textarea is long enough to scroll
+        // Shoutout to https://codersblock.com/blog/highlight-text-inside-a-textarea/
+        result = result.replace(/\n$/, '\n\n')
         return result
     })
 
     return (
-        <div class="relative">
+        <div class="relative leading-6 h-full max-w-xl m-auto">
+            {/* Invisible div to line up text height */}
+            {/* Workaround: add a bit of space when the text ends in newlines */}
             <div
-                class="absolute z-10 pointer-events-none w-full overflow-clip"
-                innerHTML={analyzedText()}
+                class="whitespace-pre-wrap invisible wrap-break-word w-full h-full border-none outline-0 p-0 m-0 overflow-auto"
+                innerHTML={text()}
             ></div>
+
+            {/* Highlight overlay */}
+            <div
+                class="absolute top-0 bottom-0 left-0 right-0 z-10 pointer-events-none w-full whitespace-pre-wrap wrap-break-word overflow-auto invisible transition ease-in-out"
+                innerHTML={analyzedText()}
+                ref={highlightRef}
+            ></div>
+
             <textarea
                 value={text()}
-                onInput={(e) => {
-                    setText(e.target.value)
-                }}
+                on:input={(event) => setText(event.target.value)}
+                on:scroll={(event) =>
+                    (highlightRef.scrollTop = event.target.scrollTop)
+                }
                 placeholder="Start writing..."
-                class="absolute h-72 w-full border-none"
+                class="absolute top-0 bottom-0 left-0 right-0 h-full w-full border-none resize-none outline-0 whitespace-pre-wrap wrap-break-word p-0 m-0 rounded-none"
             />
         </div>
     )
