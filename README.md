@@ -10,6 +10,12 @@ which would use color to highlight important concepts in text-based dialogue,
 and I was inspired to experiment with dynamically implementing this concept
 using natural language processing.
 
+## Potential directions
+
+- Smarter highlight detection using lightweight LLMs
+- Text "language server": jump to definition, view references, refactor?
+
 ## Related
 
-[Hyperlink maximalism | thesephist.com](https://thesephist.com/posts/hyperlink/)
+- [Hyperlink maximalism | thesephist.com](https://thesephist.com/posts/hyperlink/)
+- [Lodestone, Maggie Appleton](https://bsky.app/profile/maggieappleton.com/post/3lgzvd3n4722f)

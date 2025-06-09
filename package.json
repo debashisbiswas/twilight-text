@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "typecheck": "tsc --noEmit --incremental"
   },
   "license": "MIT",
   "devDependencies": {
@@ -20,7 +21,9 @@
     "prettier": "^3.5.3"
   },
   "dependencies": {
+    "@types/sentiment": "^5.0.4",
     "compromise": "^14.14.4",
+    "sentiment": "^5.0.2",
     "solid-js": "^1.9.5"
   }
 }

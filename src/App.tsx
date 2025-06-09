@@ -1,11 +1,11 @@
 import type { Component } from 'solid-js'
-import { HighlightedArea } from './components/highlighted-area'
+import { HighlightedTextArea } from './components/highlighted-text-area'
 
 const App: Component = () => {
     return (
         <div class="h-full bg-white">
             <div class="max-w-4xl mx-auto pt-6 h-full">
-                <HighlightedArea />
+                <HighlightedTextArea />
             </div>
         </div>
     )
