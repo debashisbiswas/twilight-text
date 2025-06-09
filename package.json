@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/sentiment": "^5.0.4",
     "compromise": "^14.14.4",
+    "prettier-plugin-tailwindcss": "^0.6.12",
     "sentiment": "^5.0.2",
     "solid-js": "^1.9.5"
   }

@@ -92,16 +92,16 @@ export const HighlightedTextArea = () => {
     })
 
     return (
-        <div class="relative leading-normal h-full max-w-4xl m-auto text-2xl">
+        <div class="relative m-auto h-full max-w-4xl text-2xl leading-normal">
             {/* Invisible div to line up text height; avoids textarea scroll */}
             <div
-                class="whitespace-pre-wrap invisible wrap-break-word w-full h-full border-none outline-0 px-8 m-0 overflow-auto"
+                class="invisible m-0 h-full w-full overflow-auto border-none px-8 wrap-break-word whitespace-pre-wrap outline-0"
                 innerHTML={text()}
             ></div>
 
             {/* Overlay to highlight words */}
             <div
-                class="absolute top-0 bottom-0 left-0 right-0 z-10 pointer-events-none w-full whitespace-pre-wrap wrap-break-word overflow-auto invisible transition ease-in-out px-8"
+                class="pointer-events-none invisible absolute top-0 right-0 bottom-0 left-0 z-10 w-full overflow-auto px-8 wrap-break-word whitespace-pre-wrap transition ease-in-out"
                 innerHTML={highlightedText()}
                 ref={highlightRef}
             ></div>
@@ -113,7 +113,7 @@ export const HighlightedTextArea = () => {
                     (highlightRef.scrollTop = event.target.scrollTop)
                 }
                 placeholder="Start writing..."
-                class="absolute top-0 bottom-0 left-0 right-0 h-full w-full border-none resize-none outline-0 whitespace-pre-wrap wrap-break-word px-8 m-0 rounded-none"
+                class="absolute top-0 right-0 bottom-0 left-0 m-0 h-full w-full resize-none rounded-none border-none px-8 wrap-break-word whitespace-pre-wrap outline-0"
             />
         </div>
     )

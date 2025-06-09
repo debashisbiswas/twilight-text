@@ -4,7 +4,7 @@ import { HighlightedTextArea } from './components/highlighted-text-area'
 const App: Component = () => {
     return (
         <div class="h-full bg-white">
-            <div class="max-w-4xl mx-auto pt-6 h-full">
+            <div class="mx-auto h-full max-w-4xl pt-6">
                 <HighlightedTextArea />
             </div>
         </div>
