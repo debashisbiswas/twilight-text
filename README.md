@@ -10,6 +10,9 @@ which would use color to highlight important concepts in text-based dialogue,
 and I was inspired to experiment with dynamically implementing this concept
 using natural language processing.
 
+The project is named after _The Legend of Zelda: Twilight Princess_, one of my
+favorite entries in the series.
+
 ## Potential directions
 
 - Smarter highlight detection using lightweight LLMs
